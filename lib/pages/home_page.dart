@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/dashboard_summary.dart';
+import '../widgets/meal_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: ListView(
-            children: const [
+            children:  [
               Text(
                 'YL-Health',
                 style: TextStyle(
@@ -37,23 +39,7 @@ class HomePage extends StatelessWidget {
 
               SizedBox(height: 24),
 
-              SummaryCard(
-                emoji: '🔥',
-                title: '熱量',
-                value: '$currentCalories / $calorieGoal kcal',
-              ),
-
-              SummaryCard(
-                emoji: '🥩',
-                title: '蛋白質',
-                value: '$currentProtein / $proteinGoal g',
-              ),
-
-              SummaryCard(
-                emoji: '⚖️',
-                title: '體重',
-                value: '$currentWeight kg',
-              ),
+              DashboardSummary(),
 
               SizedBox(height: 24),
 
@@ -69,62 +55,3 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class SummaryCard extends StatelessWidget {
-  final String emoji;
-  final String title;
-  final String value;
-
-  const SummaryCard({
-    super.key,
-    required this.emoji,
-    required this.title,
-    required this.value,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: Text(
-          emoji,
-          style: const TextStyle(fontSize: 28),
-        ),
-        title: Text(title),
-        subtitle: Text(
-          value,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class MealSection extends StatelessWidget {
-  final String title;
-
-  const MealSection({
-    super.key,
-    required this.title,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        trailing: const Icon(Icons.add_circle_outline),
-      ),
-    );
-  }
-}
